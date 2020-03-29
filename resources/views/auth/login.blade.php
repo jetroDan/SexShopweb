@@ -32,6 +32,7 @@
             <div class="card-body text-center">
               <div>
                 <h2>Sistema de Ventas SexShop</h2>
+                <img src="img/logo.jpeg" class="card-img-top" alt="...">
               </div>
             </div>
           </div>

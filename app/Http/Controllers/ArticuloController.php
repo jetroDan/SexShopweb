@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Articulo;
+use App\Articulo;//Modelo importado
 
+//Tenemosnuestros metodos con eventos que son el equivalenete a los trigger
 class ArticuloController extends Controller
 {
     public function index(Request $request)
@@ -13,7 +14,7 @@ class ArticuloController extends Controller
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
-        
+
         if ($buscar==''){
             $articulos = Articulo::join('categorias','articulos.idcategoria','=','categorias.id')
             ->select('articulos.id','articulos.idcategoria','articulos.codigo','articulos.nombre','categorias.nombre as nombre_categoria','articulos.precio_venta','articulos.stock','articulos.descripcion','articulos.condicion')
@@ -25,7 +26,7 @@ class ArticuloController extends Controller
             ->where('articulos.'.$criterio, 'like', '%'. $buscar . '%')
             ->orderBy('articulos.id', 'desc')->paginate(3);
         }
-        
+
 
         return [
             'pagination' => [
@@ -46,7 +47,7 @@ class ArticuloController extends Controller
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
-        
+
         if ($buscar==''){
             $articulos = Articulo::join('categorias','articulos.idcategoria','=','categorias.id')
             ->select('articulos.id','articulos.idcategoria','articulos.codigo','articulos.nombre','categorias.nombre as nombre_categoria','articulos.precio_venta','articulos.stock','articulos.descripcion','articulos.condicion')
@@ -58,18 +59,18 @@ class ArticuloController extends Controller
             ->where('articulos.'.$criterio, 'like', '%'. $buscar . '%')
             ->orderBy('articulos.id', 'desc')->paginate(10);
         }
-        
+
 
         return ['articulos' => $articulos];
     }
- 
+
     public function listarArticuloVenta(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
-        
+
         if ($buscar==''){
             $articulos = Articulo::join('categorias','articulos.idcategoria','=','categorias.id')
             ->select('articulos.id','articulos.idcategoria','articulos.codigo','articulos.nombre','categorias.nombre as nombre_categoria','articulos.precio_venta','articulos.stock','articulos.descripcion','articulos.condicion')
@@ -83,7 +84,7 @@ class ArticuloController extends Controller
             ->where('articulos.stock','>','0')
             ->orderBy('articulos.id', 'desc')->paginate(10);
         }
-        
+
 
         return ['articulos' => $articulos];
     }
@@ -110,7 +111,7 @@ class ArticuloController extends Controller
 
         return ['articulos' => $articulos];
     }
-    
+
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');

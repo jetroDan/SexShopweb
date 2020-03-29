@@ -53,7 +53,7 @@
                                     <td v-text="persona.direccion"></td>
                                     <td v-text="persona.telefono"></td>
                                     <td v-text="persona.email"></td>
-                                </tr>                                
+                                </tr>
                             </tbody>
                         </table>
                         <nav>
@@ -88,23 +88,23 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Nombre (*)</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
+                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Tipo Documento</label>
                                     <div class="col-md-9">
                                         <select v-model="tipo_documento" class="form-control">
-                                            <option value="DNI">DNI</option>
-                                            <option value="RUC">RUC</option>
-                                            <option value="PASS">PASS</option>
-                                        </select>                                    
+                                            <option value="CURP">curp</option>
+                                            <option value="INE">ine</option>
+                                            <option value="PASS">pasaporte</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Número</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">                                        
+                                        <input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -155,7 +155,7 @@
             return {
                 persona_id: 0,
                 nombre : '',
-                tipo_documento : 'DNI',
+                tipo_documento : 'INE',
                 num_documento : '',
                 direccion : '',
                 telefono : '',
@@ -188,23 +188,23 @@
                 if(!this.pagination.to) {
                     return [];
                 }
-                
-                var from = this.pagination.current_page - this.offset; 
+
+                var from = this.pagination.current_page - this.offset;
                 if(from < 1) {
                     from = 1;
                 }
 
-                var to = from + (this.offset * 2); 
+                var to = from + (this.offset * 2);
                 if(to >= this.pagination.last_page){
                     to = this.pagination.last_page;
-                }  
+                }
 
                 var pagesArray = [];
                 while(from <= to) {
                     pagesArray.push(from);
                     from++;
                 }
-                return pagesArray;             
+                return pagesArray;
 
             }
         },
@@ -232,7 +232,7 @@
                 if (this.validarPersona()){
                     return;
                 }
-                
+
                 let me = this;
 
                 axios.post('/cliente/registrar',{
@@ -253,7 +253,7 @@
                if (this.validarPersona()){
                     return;
                 }
-                
+
                 let me = this;
 
                 axios.put('/cliente/actualizar',{
@@ -269,8 +269,8 @@
                     me.listarPersona(1,'','nombre');
                 }).catch(function (error) {
                     console.log(error);
-                }); 
-            },            
+                });
+            },
             validarPersona(){
                 this.errorPersona=0;
                 this.errorMostrarMsjPersona =[];
@@ -285,7 +285,7 @@
                 this.modal=0;
                 this.tituloModal='';
                 this.nombre='';
-                this.tipo_documento='DNI';
+                this.tipo_documento='INE';
                 this.num_documento='';
                 this.direccion='';
                 this.telefono='';
@@ -303,7 +303,7 @@
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Cliente';
                                 this.nombre= '';
-                                this.tipo_documento='DNI';
+                                this.tipo_documento='INE';
                                 this.num_documento='';
                                 this.direccion='';
                                 this.telefono='';
@@ -336,7 +336,7 @@
         }
     }
 </script>
-<style>    
+<style>
     .modal-content{
         width: 100% !important;
         position: absolute !important;

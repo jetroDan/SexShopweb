@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-  <title>Sistema Ventas - SexShop</title>
+  <title> SexShop</title>
 
   <link href="css/plantilla.css" rel="stylesheet">
 

@@ -1,4 +1,4 @@
-<template>
+    <template>
             <main class="main">
             <!-- Breadcrumb -->
             <ol class="breadcrumb">
@@ -66,7 +66,7 @@
                                         <td v-text="ingreso.total"></td>
                                         <td v-text="ingreso.impuesto"></td>
                                         <td v-text="ingreso.estado"></td>
-                                    </tr>                                
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -98,7 +98,7 @@
                                         label="nombre"
                                         :options="arrayProveedor"
                                         placeholder="Buscar Proveedores..."
-                                        :onChange="getDatosProveedor"                                        
+                                        :onChange="getDatosProveedor"
                                     >
 
                                     </v-select>
@@ -149,7 +149,7 @@
                                         <input type="text" class="form-control" v-model="codigo" @keyup.enter="buscarArticulo()" placeholder="Ingrese artículo">
                                         <button @click="abrirModal()" class="btn btn-primary">...</button>
                                         <input type="text" readonly class="form-control" v-model="articulo">
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -220,14 +220,14 @@
                                                 NO hay artículos agregados
                                             </td>
                                         </tr>
-                                    </tbody>                                    
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <button type="button" @click="ocultarDetalle()" class="btn btn-secondary">Cerrar</button>
-                                <button type="button" class="btn btn-primary" @click="registrarIngreso()">Registrar Compra</button>
+                                <button type="button" class="btn btn-primary" @click="registrarIngreso()">Registrar Ingreso</button>
                             </div>
                         </div>
                     </div>
@@ -308,14 +308,14 @@
                                                 NO hay artículos agregados
                                             </td>
                                         </tr>
-                                    </tbody>                                    
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <button type="button" @click="ocultarDetalle()" class="btn btn-secondary">Cerrar</button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -380,9 +380,9 @@
                                                 <div v-else>
                                                     <span class="badge badge-danger">Desactivado</span>
                                                 </div>
-                                                
+
                                             </td>
-                                        </tr>                                
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -459,16 +459,16 @@
                 if(!this.pagination.to) {
                     return [];
                 }
-                
-                var from = this.pagination.current_page - this.offset; 
+
+                var from = this.pagination.current_page - this.offset;
                 if(from < 1) {
                     from = 1;
                 }
 
-                var to = from + (this.offset * 2); 
+                var to = from + (this.offset * 2);
                 if(to >= this.pagination.last_page){
                     to = this.pagination.last_page;
-                }  
+                }
 
                 var pagesArray = [];
                 while(from <= to) {
@@ -583,12 +583,12 @@
                         me.idarticulo=0;
                         me.articulo="";
                         me.cantidad=0;
-                        me.precio=0; 
+                        me.precio=0;
                     }
-                    
+
                 }
 
-                
+
 
             },
             agregarDetalleModal(data =[]){
@@ -606,7 +606,7 @@
                             articulo: data['nombre'],
                             cantidad: 1,
                             precio: 1
-                        }); 
+                        });
                     }
             },
             listarArticulo (buscar,criterio){
@@ -624,7 +624,7 @@
                 if (this.validarIngreso()){
                     return;
                 }
-                
+
                 let me = this;
 
                 axios.post('/ingreso/registrar',{
@@ -691,11 +691,11 @@
             verIngreso(id){
                 let me=this;
                 me.listado=2;
-                
+
                 //Obtener los datos del ingreso
                 var arrayIngresoT=[];
                 var url= '/ingreso/obtenerCabecera?id=' + id;
-                
+
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
                     arrayIngresoT = respuesta.ingreso;
@@ -711,9 +711,9 @@
                     console.log(error);
                 });
 
-                //Obtener los datos de los detalles 
+                //Obtener los datos de los detalles
                 var urld= '/ingreso/obtenerDetalles?id=' + id;
-                
+
                 axios.get(urld).then(function (response) {
                     console.log(response);
                     var respuesta= response.data;
@@ -721,13 +721,13 @@
                 })
                 .catch(function (error) {
                     console.log(error);
-                });               
+                });
             },
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-            }, 
-            abrirModal(){               
+            },
+            abrirModal(){
                 this.arrayArticulo=[];
                 this.modal = 1;
                 this.tituloModal = 'Seleccione uno o varios artículos';
@@ -761,15 +761,15 @@
                     }).catch(function (error) {
                         console.log(error);
                     });
-                    
-                    
+
+
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                 ) {
-                    
+
                 }
-                }) 
+                })
             },
         },
         mounted() {
@@ -777,7 +777,7 @@
         }
     }
 </script>
-<style>    
+<style>
     .modal-content{
         width: 100% !important;
         position: absolute !important;

@@ -67,7 +67,7 @@
                                     <td v-text="persona.email"></td>
                                     <td v-text="persona.usuario"></td>
                                     <td v-text="persona.role"></td>
-                                </tr>                                
+                                </tr>
                             </tbody>
                         </table>
                         <nav>
@@ -102,7 +102,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Nombre(*)</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
+                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -112,8 +112,8 @@
                                             <option value="DNI">DNI</option>
                                             <option value="RUC">RUC</option>
                                             <option value="CEDULA">CEDULA</option>
-                                            <option value="PASS">PASS</option>
-                                        </select>                                        
+                                            
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -228,23 +228,23 @@
                 if(!this.pagination.to) {
                     return [];
                 }
-                
-                var from = this.pagination.current_page - this.offset; 
+
+                var from = this.pagination.current_page - this.offset;
                 if(from < 1) {
                     from = 1;
                 }
 
-                var to = from + (this.offset * 2); 
+                var to = from + (this.offset * 2);
                 if(to >= this.pagination.last_page){
                     to = this.pagination.last_page;
-                }  
+                }
 
                 var pagesArray = [];
                 while(from <= to) {
                     pagesArray.push(from);
                     from++;
                 }
-                return pagesArray;             
+                return pagesArray;
 
             }
         },
@@ -285,7 +285,7 @@
                 if (this.validarPersona()){
                     return;
                 }
-                
+
                 let me = this;
 
                 axios.post('/user/registrar',{
@@ -310,7 +310,7 @@
                if (this.validarPersona()){
                     return;
                 }
-                
+
                 let me = this;
 
                 axios.put('/user/actualizar',{
@@ -329,7 +329,7 @@
                     me.listarPersona(1,'','nombre');
                 }).catch(function (error) {
                     console.log(error);
-                }); 
+                });
             },
             validarPersona(){
                 this.errorPersona=0;
@@ -430,15 +430,15 @@
                     }).catch(function (error) {
                         console.log(error);
                     });
-                    
-                    
+
+
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                 ) {
-                    
+
                 }
-                }) 
+                })
             },
             activarUsuario(id){
                swal({
@@ -469,15 +469,15 @@
                     }).catch(function (error) {
                         console.log(error);
                     });
-                    
-                    
+
+
                 } else if (
                     // Read more about handling dismissals
                     result.dismiss === swal.DismissReason.cancel
                 ) {
-                    
+
                 }
-                }) 
+                })
             },
         },
         mounted() {
@@ -485,7 +485,7 @@
         }
     }
 </script>
-<style>    
+<style>
     .modal-content{
         width: 100% !important;
         position: absolute !important;
