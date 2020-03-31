@@ -15,7 +15,7 @@ class UserController extends Controller
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
-        
+
         if ($buscar==''){
             $personas = User::join('personas','users.id','=','personas.id')
             ->join('roles','users.idrol','=','roles.id')
@@ -28,7 +28,7 @@ class UserController extends Controller
             ->select('personas.id','personas.nombre','personas.tipo_documento','personas.num_documento','personas.direccion','personas.telefono','personas.email','users.usuario','users.password','users.condicion','users.idrol','roles.nombre as rol')
             ->where('personas.'.$criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
         }
-        
+
         return [
             'pagination' => [
                 'total'        => $personas->total(),
@@ -63,7 +63,7 @@ class UserController extends Controller
             $user->idrol = $request->idrol;
             $user->usuario = $request->usuario;
             $user->password = bcrypt( $request->password);
-            $user->condicion = '1';            
+            $user->condicion = '1';
             $user->save();
 
             DB::commit();
@@ -89,7 +89,7 @@ class UserController extends Controller
             $persona->email = $request->email;
             $persona->save();
 
-            
+
             $user->usuario = $request->usuario;
             $user->password = bcrypt( $request->password);
             $user->condicion = '1';
